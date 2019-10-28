@@ -3,34 +3,64 @@ class DinnerModel {
 
   constructor() {
     this.dishes = dishesConst;
-
-    //TODO Lab 0
-    // implement the data structure that will hold number of guests
-    // and selected dishes for the dinner menu
-
+    this.nrGuests = 0;
+    this.selectedDishes = new Array(this.nrGuests);
   }
-
   setNumberOfGuests(num) {
-    //TODO Lab 0
+    //wont allow negative
+    if(num < 0)
+      num = -num;
+    this.nrGuests = num;
   }
 
   getNumberOfGuests() {
-    //TODO Lab 0
+    //set and get the right amount of guests
+    return this.nrGuests;
   }
 
-  //Returns the dish that is on the menu for selected type 
+  //Returns the dishes that is on the menu for selected type 
   getSelectedDish(type) {
-    //TODO Lab 0
+    selectedType = [];
+
+    for(let n = 0; n < dishesConst.length; n++)
+    {
+      if (dishesConst[n].type.to.equal(type))
+      {
+        selectedType.push(dishesConst[n]);
+      }
+    }
+
+    if(selectedType.length <= 0) {
+      console.log("No dishes of this type is available.")
+    }
+
+    else{
+      return selectedType;
+    }
   }
 
   //Returns all the dishes on the menu.
-  getFullMenu() {
-    //TODO Lab 0
+  getFullMenu() { 
+    allDishes = new Array;
+
+    for(let m = 0; m < dishesConst.length; m++)
+    {
+        allDishes.push(dishesConst[m])
+    }
+
+    return allDishes; 
   }
 
   //Returns all ingredients for all the dishes on the menu.
-  getAllIngredients() {
-    //TODO Lab 0
+  getAllIngredients()
+  {
+    for(let k = 0; k < dishesConst.length; k++)
+    {
+      for(let l = 0; l < dishesConst[k].ingredients.length; l++)
+      {
+
+      }
+    }
   }
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
