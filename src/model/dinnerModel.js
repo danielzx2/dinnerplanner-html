@@ -59,8 +59,10 @@ class DinnerModel {
     {
       for(let l = 0; l < dishesConst[k].ingredients.length; l++)
       {
-          fullIngredients.push(ingredient[l]);
-          /*TODO: Handle the situation when there are duplicates */
+          if(fullIngredients.includes(ingredient[l]) == false) /*Proposed solution for handling duplicates.*/
+          {
+            fullIngredients.push(ingredient[l]);
+          }
       }
     }
 
