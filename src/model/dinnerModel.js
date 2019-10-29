@@ -82,7 +82,14 @@ class DinnerModel {
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   addDishToMenu(id) {
-    //TODO Lab 0 
+    for(let j = 0; j < dishesConst.length; j++)
+    {
+      if(dishesConst[j].id == id)
+      {
+        selectedDishes.push(dishesConst[j]);
+      }
+    } 
+    return selectedDishes;
   }
 
   //Removes dish from menu
