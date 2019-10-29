@@ -112,11 +112,17 @@ class DinnerModel {
       let found = true;
       if (query) {
         found = false;
+
+        if(dish.name.includes(query)) {
+          return true;
+        }
+        
         dish.ingredients.forEach(function (ingredient) {
           if (ingredient.name.indexOf(query) !== -1) {
             found = true;
           }
         });
+
         if (dish.name.indexOf(query) !== -1) {
           found = true;
         }
