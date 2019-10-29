@@ -117,6 +117,7 @@ class DinnerModel {
           return true;
         }
         
+        
         dish.ingredients.forEach(function (ingredient) {
           if (ingredient.name.indexOf(query) !== -1) {
             found = true;
