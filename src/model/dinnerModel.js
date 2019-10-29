@@ -70,7 +70,13 @@ class DinnerModel {
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
   getTotalMenuPrice() {
-    //TODO Lab 0
+    var totalPrice = 0;
+    for(let p = 0; p < fullIngredients.length; p++)
+    {
+      totalPrice = totalPrice + fullIngredients[p].price;
+    }
+
+    return totalPrice;
   }
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
