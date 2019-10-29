@@ -14,7 +14,7 @@ class DinnerModel {
   }
 
   getNumberOfGuests() {
-    //set and get the right amount of guests
+    //get the right amount of guests
     return this.nrGuests;
   }
 
@@ -41,7 +41,7 @@ class DinnerModel {
 
   //Returns all the dishes on the menu.
   getFullMenu() { 
-    allDishes = new Array;
+    allDishes = [];
 
     for(let m = 0; m < dishesConst.length; m++)
     {
@@ -54,7 +54,7 @@ class DinnerModel {
   //Returns all ingredients for all the dishes on the menu.
   getAllIngredients()
   {
-    fullIngredients = new Array;
+    fullIngredients = [];
     for(let k = 0; k < dishesConst.length; k++)
     {
       for(let l = 0; l < dishesConst[k].ingredients.length; l++)
@@ -65,7 +65,6 @@ class DinnerModel {
           }
       }
     }
-
     return fullIngredients;
   }
 
@@ -332,7 +331,7 @@ const dishesConst = [{
   }]
 }, {
   'id': 200,
-  'name': 'Chocolat Ice cream',
+  'name': 'Chocolate Ice cream',
   'type': 'dessert',
   'image': 'icecream.jpg',
   'description': "Here is how you make it... Lore ipsum...",
