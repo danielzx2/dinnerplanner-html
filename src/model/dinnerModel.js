@@ -81,22 +81,28 @@ class DinnerModel {
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
-  addDishToMenu(dish) {
-    selectedDishes.push(dish);
+  addDishToMenu(id) {
+    for(let j = 0; j < dishesConst.length; j++)
+    {
+      if(dishesConst[j].id == id && this.selectedDishes.includes(dishesConst[j]))
+      {
+        removeDishFromMenu(id);
+        this.selectedDishes.push(dishesConst[j]);
+      }
+
+      else
+      {
+        this.selectedDishes.push(dishesConst[j]);
+      }
+    } 
     return selectedDishes;
   }
 
   //Removes dish from menu
   removeDishFromMenu(id) {
-    for(let s = 0; s < selectedDishes.length; s++)
-    {
-      if(selectedDishes[s].id == id)
-      {
-        selectedDishes.splice(s,1);
-      } 
-    }
+    const newMenu = selectedDishes.filter(dish => dish.id != id)
 
-    return selectedDishes;
+    return newMenu;
   }
 
 
