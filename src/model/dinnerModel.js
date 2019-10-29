@@ -54,13 +54,17 @@ class DinnerModel {
   //Returns all ingredients for all the dishes on the menu.
   getAllIngredients()
   {
+    fullIngredients = new Array;
     for(let k = 0; k < dishesConst.length; k++)
     {
       for(let l = 0; l < dishesConst[k].ingredients.length; l++)
       {
-
+          fullIngredients.push(ingredient[l]);
+          /*TODO: Handle the situation when there are duplicates */
       }
     }
+
+    return fullIngredients;
   }
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
