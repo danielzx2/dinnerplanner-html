@@ -22,7 +22,7 @@ class DinnerModel {
     var selectedDishes = [];  
     for(let k = 0; k < this.menu.length; k++)
     {
-      if(this.menu[k].type == type)
+      if(this.menu[k].dishTypes[0] == type)
       {
         selectedDishes.push(this.menu[k]);
       }
