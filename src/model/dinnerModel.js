@@ -20,16 +20,8 @@ class DinnerModel {
 
   //Returns the dishes that are on the menu for selected type
   getSelectedDishes(type) {
-    var selectedDishes = [];  
-    for(let k = 0; k < this.menu.length; k++)
-    {
-      if(this.menu[k].dishTypes[0] == type)
-      {
-        selectedDishes.push(this.menu[k]);
-      }
-    }
-
-    return selectedDishes;
+    var selectedDishes = this.menu.filter(dish => dish.dishTypes.includes(type));
+    return selectedDishes;  
   }
 
   //Returns all the dishes on the menu.
@@ -41,6 +33,7 @@ class DinnerModel {
   //is functional
   getAllIngredients() {
     var fullIngredients = [];
+    for(let m = 0; m < this.menu.length; m++)
     fullIngredients = this.menu.map(dish => dish.extendedIngredients.filter(ingredients => !fullIngredients.includes(ingredients)) )
     return fullIngredients.flat();
   }
@@ -48,11 +41,7 @@ class DinnerModel {
   //Returns the total price of the menu (price per serving of each dish multiplied by number of guests).
   getTotalMenuPrice() {
     var totalPrice = 0;
-    for(let i = 0; i < this.menu.length; i++)
-    {
-      totalPrice = totalPrice + this.menu[i].pricePerServing;
-    }
-    totalPrice = totalPrice*this.getNumberOfGuests;
+    totalPrice = this.menu.reduce(this.menu.map(dish));
     return totalPrice;
   }
 
@@ -66,7 +55,7 @@ class DinnerModel {
   }
 
   //Removes dish with specified id from menu
-  //is functional
+   //is functional
   removeDishFromMenu(id) {
     this.menu = this.menu.filter(dish => dish.id !== id)
   }
