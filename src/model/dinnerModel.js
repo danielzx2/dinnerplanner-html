@@ -41,7 +41,7 @@ class DinnerModel {
 
   //Returns all the dishes on the menu.
   getFullMenu() { 
-    allDishes = [];
+    var allDishes = [];
 
     for(let m = 0; m < dishesConst.length; m++)
     {
@@ -82,10 +82,10 @@ class DinnerModel {
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   addDishToMenu(id) {
-  if (this.selectedDishes.includes(getDish(id))) 
+  if (this.selectedDishes.includes(this.getDish(id))) 
       {
           removeDishFromMenu(id);
-          this.selectedDishes.push(getDish(id));
+          this.selectedDishes.push(this.getDish(id));
       }
       return this.selectedDishes;
   }
