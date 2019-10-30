@@ -6,7 +6,7 @@ class DinnerModel {
     this.menu = [];
   }
 
-  //functional
+  //is functional
   setNumberOfGuests(num) {
     if(num < 0)
       num = -num;
@@ -20,8 +20,7 @@ class DinnerModel {
 
   //Returns the dishes that are on the menu for selected type
   getSelectedDishes(type) {
-    var selectedDishes = this.menu.filter(dish => dish.dishTypes.includes(type));
-    return selectedDishes;  
+    return this.menu.filter(dish => dish.dishTypes.includes(type));
   }
 
   //Returns all the dishes on the menu.
@@ -33,8 +32,7 @@ class DinnerModel {
   //is functional
   getAllIngredients() {
     var fullIngredients = [];
-    for(let m = 0; m < this.menu.length; m++)
-    fullIngredients = this.menu.map(dish => dish.extendedIngredients.filter(ingredients => !fullIngredients.includes(ingredients)) )
+    fullIngredients = this.menu.map(dish => dish.extendedIngredients.filter(ingredients => !fullIngredients.includes(ingredients)))
     return fullIngredients.flat();
   }
 
@@ -48,9 +46,6 @@ class DinnerModel {
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   addDishToMenu(dish) {
-    if(this.menu.includes(dish)){
-      removeDishFromMenu(dish.id)
-    }
     this.menu.push(dish);
   }
 
@@ -66,7 +61,9 @@ class DinnerModel {
   getAllDishes(type, query) {
     return this.dishes.filter(function (dish) {
       let found = true;
+
       if (query) {
+        
         found = false;
         dish.extendedIngredients.forEach(function (ingredient) {
           if (ingredient.name.indexOf(query) !== -1) {
@@ -79,16 +76,13 @@ class DinnerModel {
       }
       return (dish.dishTypes.includes(type) || !type) && found;
     });
+
   }
 
   //Returns a dish of specific ID
+  //is functional
   getDish(id) {
-    for (let dish of this.dishes) {
-      if (dish.id === id) {
-        return dish;
-      }
-    }
-    return undefined;
+    return this.dishes.filter(dish => dish.id === id)[0]
   }
 }
 
