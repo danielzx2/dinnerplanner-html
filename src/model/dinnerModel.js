@@ -19,7 +19,16 @@ class DinnerModel {
 
   //Returns the dishes that are on the menu for selected type
   getSelectedDishes(type) {
-    //TODO Lab 1
+    var selectedDishes = [];  
+    for(let k = 0; k < this.menu.length; k++)
+    {
+      if(this.menu[k].type == type)
+      {
+        selectedDishes.push(this.menu[k]);
+      }
+    }
+
+    return selectedDishes;
   }
 
   //Returns all the dishes on the menu.
@@ -30,12 +39,26 @@ class DinnerModel {
 
   //Returns all ingredients for all the dishes on the menu.
   getAllIngredients() {
-    //TODO Lab 1
+    var fullIngredients = [];
+    for(let m = 0; m < this.menu.length; m++)
+    {
+       if(!fullIngredients.includes(this.menu[m].extendedIngredients))
+       {
+          fullIngredients.push(this.menu[m].extendedIngredients)
+       }
+    }
+    return fullIngredients;
   }
 
   //Returns the total price of the menu (price per serving of each dish multiplied by number of guests).
   getTotalMenuPrice() {
-    //TODO Lab 1
+    var totalPrice = 0;
+    for(let i = 0; i < this.menu.length; i++)
+    {
+      totalPrice = totalPrice + this.menu[i].pricePerServing;
+    }
+    totalPrice = totalPrice*this.getNumberOfGuests;
+    return totalPrice;
   }
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
