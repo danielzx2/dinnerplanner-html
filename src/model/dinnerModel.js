@@ -6,14 +6,14 @@ class DinnerModel {
     this.menu = [];
   }
 
-  //is functional
+  //sets the number of guests
   setNumberOfGuests(num) {
     if(num < 0)
       num = -num;
     this.nrGuests = num;
   }
 
-  //is functional
+  //returns the number of guests
   getNumberOfGuests() {
     return this.nrGuests;
   }
@@ -29,28 +29,23 @@ class DinnerModel {
   }
 
   //Returns all ingredients for all the dishes on the menu.
-  //is functional
   getAllIngredients() {
-    var fullIngredients = [];
-    fullIngredients = this.menu.map(dish => dish.extendedIngredients.filter(ingredients => !fullIngredients.includes(ingredients)))
-    return fullIngredients.flat();
+    var fullingredients = [];
+    fullingredients = this.menu.map(dish => dish.extendedIngredients.filter(ingredients => !fullingredients.includes(ingredients)))
+    return fullingredients.flat()
   }
 
   //Returns the total price of the menu (price per serving of each dish multiplied by number of guests).
   getTotalMenuPrice() {
-    var totalPrice = 0;
-    totalPrice = this.menu.reduce(this.menu.map(dish));
-    return totalPrice;
+    return this.menu.reduce(this.menu.map(dish)); 
   }
 
-  //Adds the passed dish to the menu. If the dish of that type already exists on the menu
-  //it is removed from the menu and the new one added.
+  //Adds the passed dish to the menu.
   addDishToMenu(dish) {
     this.menu.push(dish);
   }
 
   //Removes dish with specified id from menu
-   //is functional
   removeDishFromMenu(id) {
     this.menu = this.menu.filter(dish => dish.id !== id)
   }
@@ -60,27 +55,21 @@ class DinnerModel {
   //if you don't pass any query, all the dishes will be returned
   getAllDishes(type, query) {
     return this.dishes.filter(function (dish) {
-      let found = true;
 
+      let found = true;
       if (query) {
-        
-        found = false;
-        dish.extendedIngredients.forEach(function (ingredient) {
-          if (ingredient.name.indexOf(query) !== -1) {
-            found = true;
-          }
-        });
+
+        // true if the current dish has a ingredient which contains the query
+        found = (dish.extendedIngredients.filter(ingredient => ingredient.name.includes(query)).length > 0);
         if (dish.name.indexOf(query) !== -1) {
           found = true;
         }
       }
       return (dish.dishTypes.includes(type) || !type) && found;
     });
-
   }
 
   //Returns a dish of specific ID
-  //is functional
   getDish(id) {
     return this.dishes.filter(dish => dish.id === id)[0]
   }

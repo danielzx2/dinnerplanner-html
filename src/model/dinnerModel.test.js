@@ -122,7 +122,7 @@ describe("DinnerModel", () => {
         expect(dishes.length).to.be.above(0);
         expect(allDishesMatch).to.equal(true);
 
-        dishes = model.getAllDishes("", "Meat");
+        dishes = model.getAllDishes("", "beef");
         allDishesMatch = dishes.every(dish => dish.name.includes("Meat"));
         expect(dishes.length).to.be.above(0);
         expect(allDishesMatch).to.equal(true);
