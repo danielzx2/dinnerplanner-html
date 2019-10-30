@@ -72,7 +72,7 @@ class DinnerModel {
 
   //Removes dish with specified id from menu
   removeDishFromMenu(id) {
-    this.menu = this.menu.filter( menu.dish.id !== id)
+    this.menu = this.menu.filter(dish => dish.id !== id)
   }
 
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
