@@ -1,4 +1,3 @@
-//DinnerModel class
 class DinnerModel {
 
   constructor() {
@@ -349,4 +348,3 @@ function deepFreeze(o) {
 }
 
 deepFreeze(dishesConst);
-
