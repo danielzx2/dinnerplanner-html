@@ -32,7 +32,6 @@ class DinnerModel {
   }
 
   //Returns all the dishes on the menu.
-
   getFullMenu() {
     return this.menu;
   }
