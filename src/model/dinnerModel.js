@@ -6,12 +6,14 @@ class DinnerModel {
     this.menu = [];
   }
 
+  //functional
   setNumberOfGuests(num) {
     if(num < 0)
       num = -num;
     this.nrGuests = num;
   }
 
+  //is functional
   getNumberOfGuests() {
     return this.nrGuests;
   }
@@ -36,16 +38,11 @@ class DinnerModel {
   }
 
   //Returns all ingredients for all the dishes on the menu.
+  //is functional
   getAllIngredients() {
     var fullIngredients = [];
-    for(let m = 0; m < this.menu.length; m++)
-    {
-       if(!fullIngredients.includes(this.menu[m].extendedIngredients))
-       {
-          fullIngredients.push(this.menu[m].extendedIngredients)
-       }
-    }
-    return fullIngredients;
+    fullIngredients = this.menu.map(dish => dish.extendedIngredients.filter(ingredients => !fullIngredients.includes(ingredients)) )
+    return fullIngredients.flat();
   }
 
   //Returns the total price of the menu (price per serving of each dish multiplied by number of guests).
@@ -69,6 +66,7 @@ class DinnerModel {
   }
 
   //Removes dish with specified id from menu
+  //is functional
   removeDishFromMenu(id) {
     this.menu = this.menu.filter(dish => dish.id !== id)
   }

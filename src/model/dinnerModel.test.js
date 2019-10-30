@@ -209,6 +209,16 @@ describe("DinnerModel", () => {
         expect(model.getFullMenu()).to.include(model.getDish(100));
       });
 
+      it("can show all ingredients", () => {
+        model.addDishToMenu(model.getDish(1)); // starter
+        model.addDishToMenu(model.getDish(2)); // starter
+
+        let allIngred = ['eggs','milk','brown sugar','ground nutmeg','white bread',
+        'all-purpose flour','warm water','active dry yeast',]
+        let testIngred = model.getAllIngredients()
+        expect( testIngred === allIngred);
+      });
+
       it("can remove dishes", () => {
         model.addDishToMenu(model.getDish(1));
         // dish 1 should be in the menu
