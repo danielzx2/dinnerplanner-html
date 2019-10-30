@@ -20,7 +20,7 @@ class DinnerModel {
 
   //Returns the dishes that is on the menu for selected type 
   getSelectedDish(type) {
-    selectedType = [];
+    var selectedType = [];
 
     for(let n = 0; n < dishesConst.length; n++)
     {
@@ -41,14 +41,16 @@ class DinnerModel {
 
   //Returns all the dishes on the menu.
   getFullMenu() { 
-    allDishes = [];
-
+     var fullMenu = [];
+    
+    console.log(true)
     for(let m = 0; m < dishesConst.length; m++)
     {
-        allDishes.push(dishesConst[m])
+        fullMenu.push(dishesConst[m])
+        console.log(dishesConst[m])
     }
 
-    return allDishes; 
+    return fullMenu; 
   }
 
   //Returns all ingredients for all the dishes on the menu.
@@ -82,7 +84,7 @@ class DinnerModel {
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   addDishToMenu(id) {
-  if (this.selectedDishes.includes(getDish(id))) 
+  if (this.selectedDishes.includes(this.getDish(id))) 
       {
           removeDishFromMenu(id);
           this.selectedDishes.push(getDish(id));
