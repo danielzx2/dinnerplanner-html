@@ -1,5 +1,6 @@
 class DinnerModel {
 
+  //testing git bash atm
   constructor() {
     this.dishes = dishesConst;
     this.nrGuests = 0;
