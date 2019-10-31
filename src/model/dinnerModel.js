@@ -32,12 +32,13 @@ class DinnerModel {
   getAllIngredients() {
     var fullingredients = [];
     fullingredients = this.menu.map(dish => dish.extendedIngredients.filter(ingredients => !fullingredients.includes(ingredients)))
-    return fullingredients.flat()
+    return (fullingredients.flat()).map(fullingredients => fullingredients.name)
   }
 
   //Returns the total price of the menu (price per serving of each dish multiplied by number of guests).
   getTotalMenuPrice() {
-    return this.menu.reduce(this.menu.map(dish)); 
+    let totprice = this.menu.map(menu => menu.pricePerServing).reduce((a,b) => a+b) * this.getNumberOfGuests()
+    return totprice;
   }
 
   //Adds the passed dish to the menu.

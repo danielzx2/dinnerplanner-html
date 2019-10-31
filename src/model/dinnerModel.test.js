@@ -209,14 +209,26 @@ describe("DinnerModel", () => {
         expect(model.getFullMenu()).to.include(model.getDish(100));
       });
 
+      //test made by Abyel
       it("can show all ingredients", () => {
         model.addDishToMenu(model.getDish(1)); // starter
         model.addDishToMenu(model.getDish(2)); // starter
 
-        let allIngred = ['eggs','milk','brown sugar','ground nutmeg','white bread',
+        let allIngredients = ['eggs','milk','brown sugar','ground nutmeg','white bread',
         'all-purpose flour','warm water','active dry yeast',]
-        let testIngred = model.getAllIngredients()
-        expect( testIngred === allIngred);
+        let test = model.getAllIngredients()
+        expect(test === allIngredients);
+      });
+
+      //temporary test by abyel
+      it("can return the total price", () => {
+        model.setNumberOfGuests(1);
+        model.addDishToMenu(model.getDish(1)); // starter
+        model.addDishToMenu(model.getDish(2)); // starter
+        model.addDishToMenu(model.getDish(3)); // starter
+
+        let total = 32.5 + 43.2 + 52.8
+        expect(model.getTotalMenuPrice() == total);
       });
 
       it("can remove dishes", () => {
