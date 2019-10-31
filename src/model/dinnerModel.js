@@ -1,7 +1,7 @@
 class DinnerModel {
 
   constructor() {
-    this.dishes = dishesConst;
+    //this.dishes = dishesConst;
     this.nrGuests = 0;
     this.menu = [];
   }
@@ -55,8 +55,20 @@ class DinnerModel {
   //query argument, text, if passed only returns dishes that contain the query in name or one of the ingredients.
   //if you don't pass any query, all the dishes will be returned
   getAllDishes(type, query) {
-    return this.dishes.filter(function (dish) {
 
+    if(type == undefined && query && undefined){
+      type = "" 
+      query = ""
+    }
+
+    let ar = fetch(ENDPOINT+"/recipes/search?type="+type+"&query="+query,
+      {headers:{"X-Mashape-Key" : API_KEY }}
+      ).then(response => response.json())
+    
+
+    console.log(ar)
+
+    return this.ar.filter(function (dish) {
       let found = true;
       if (query) {
 
@@ -67,12 +79,16 @@ class DinnerModel {
         }
       }
       return (dish.dishTypes.includes(type) || !type) && found;
-    });
+  });
   }
 
   //Returns a dish of specific ID
+  //assign 3
   getDish(id) {
-    return this.dishes.filter(dish => dish.id === id)[0]
+    let dr = fetch(ENDPOINT+"/recipes/"+id+"/information",
+      {headers:{"X-Mashape-Key" : API_KEY }}
+      ).then(response => response.json())
+    return dr
   }
 }
 
@@ -84,6 +100,8 @@ class DinnerModel {
 // defining the unit i.e. "g", "slices", "ml". Unit
 // can sometimes be empty like in the example of eggs where
 // you just say "5 eggs" and not "5 pieces of eggs" or anything else.
+
+/*
 const dishesConst = [{
   'id': 1,
   'name': 'French toast',
@@ -303,6 +321,7 @@ const dishesConst = [{
 }
 ];
 
+
 // Deepfreeze, you can ignore this function
 // https://github.com/substack/deep-freeze/blob/master/index.js
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
@@ -319,3 +338,4 @@ function deepFreeze(o) {
 }
 
 deepFreeze(dishesConst);
+*/
