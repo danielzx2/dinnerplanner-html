@@ -1,6 +1,5 @@
 class DinnerModel {
 
-  //testing git bash again
   constructor() {
     this.dishes = dishesConst;
     this.nrGuests = 0;
