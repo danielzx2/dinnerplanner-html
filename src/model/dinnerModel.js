@@ -8,8 +8,8 @@ class DinnerModel {
 
   //sets the number of guests
   setNumberOfGuests(num) {
-    if(num < 0)
-      num = -num;
+    if(num <= 0)
+      num = 1;
     this.nrGuests = num;
   }
 
