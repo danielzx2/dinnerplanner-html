@@ -16,6 +16,7 @@ class DinnerModel {
   //returns the number of guests
   getNumberOfGuests() {
     return this.nrGuests;
+    
   }
 
   //Returns the dishes that are on the menu for selected type
