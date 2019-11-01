@@ -10,6 +10,7 @@ class DinnerModel {
   setNumberOfGuests(num) {
     if(num < 1)
       num = 1;
+      
     this.nrGuests = num;
   }
 
