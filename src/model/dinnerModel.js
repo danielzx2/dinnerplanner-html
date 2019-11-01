@@ -56,30 +56,20 @@ class DinnerModel {
   //if you don't pass any query, all the dishes will be returned
   getAllDishes(type, query) {
 
-    if(type == undefined && query && undefined){
-      type = "" 
-      query = ""
-    }
+    if(!type)
+      type = '' 
 
-    let ar = fetch(ENDPOINT+"/recipes/search?type="+type+"&query="+query,
-      {headers:{"X-Mashape-Key" : API_KEY }}
-      ).then(response => response.json())
+    if(!query)
+      query = ''
     
+    let url = ENDPOINT.concat("/recipes/search?type=")
+    .concat(type).concat("&query=").concat(query)
 
-    console.log(ar)
+    let ar = fetch(url,
+      {headers:{"X-Mashape-Key" : API_KEY }}
+      ).then(response => response.json()).then(response => response.results)
 
-    return this.ar.filter(function (dish) {
-      let found = true;
-      if (query) {
-
-        // true if the current dish has a ingredient which contains the query
-        found = (dish.extendedIngredients.filter(ingredient => ingredient.name.includes(query)).length > 0);
-        if (dish.name.indexOf(query) !== -1) {
-          found = true;
-        }
-      }
-      return (dish.dishTypes.includes(type) || !type) && found;
-  });
+    return ar
   }
 
   //Returns a dish of specific ID
@@ -88,6 +78,7 @@ class DinnerModel {
     let dr = fetch(ENDPOINT+"/recipes/"+id+"/information",
       {headers:{"X-Mashape-Key" : API_KEY }}
       ).then(response => response.json())
+
     return dr
   }
 }
