@@ -40,7 +40,7 @@ describe("DinnerModel", () => {
   });
   describe("Negative number of guests", () =>{
     it("will set less than 1 number of guests to 1", () => {
-      model.setNumberOfGuests(0);
+      model.setNumberOfGuests(-5);
       expect(model.getNumberOfGuests()).to.equal(1);
     })
   })

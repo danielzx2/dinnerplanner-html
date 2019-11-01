@@ -56,7 +56,7 @@ class DinnerModel {
   //query argument, text, if passed only returns dishes that contain the query in name or one of the ingredients.
   //if you don't pass any query, all the dishes will be returned
   getAllDishes(type, query) {
-
+    document.getElementById("loader").style.display = "";
     if(!type)
       type = '' 
 
@@ -68,18 +68,25 @@ class DinnerModel {
 
     let ar = fetch(url,
       {headers:{"X-Mashape-Key" : API_KEY }}
-      ).then(response => response.json()).then(response => response.results)
-
+      ).then(response => response.json()).then(response => {
+        document.getElementById("loader").style.display = "none";
+        return response.results
+      })
+      
     return ar
   }
 
   //Returns a dish of specific ID
   //assign 3
   getDish(id) {
+    document.getElementById("loader").style.display = "";
     let dr = fetch(ENDPOINT+"/recipes/"+id+"/information",
       {headers:{"X-Mashape-Key" : API_KEY }}
-      ).then(response => response.json())
-
+      ).then(response => {
+        document.getElementById("loader").style.display = "none";
+        return response.json()
+      })
+      
     return dr
   }
 }
