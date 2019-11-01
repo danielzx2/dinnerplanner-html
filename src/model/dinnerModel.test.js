@@ -38,6 +38,12 @@ describe("DinnerModel", () => {
       expect(model.getNumberOfGuests()).to.equal(1);
     });
   });
+  describe("Negative number of guests", () =>{
+    it("will set less than 1 number of guests to 1", () => {
+      model.setNumberOfGuests(0);
+      expect(model.getNumberOfGuests()).to.equal(1);
+    })
+  })
 
   describe("getting individual dishes", () => {
     let getDishReturnsPromise = model.getDish(1) instanceof Promise;
