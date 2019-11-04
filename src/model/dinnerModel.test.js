@@ -1,5 +1,5 @@
-const assert = chai.assert;
-const expect = chai.expect;
+var assert = chai.assert;
+var expect = chai.expect;
 
 describe("DinnerModel", () => {
   let model = new DinnerModel();
@@ -128,7 +128,7 @@ describe("DinnerModel", () => {
         expect(dishes.length).to.be.above(0);
         expect(allDishesMatch).to.equal(true);
 
-        dishes = model.getAllDishes("", "beef");
+        dishes = model.getAllDishes("", "Meat");
         allDishesMatch = dishes.every(dish => dish.name.includes("Meat"));
         expect(dishes.length).to.be.above(0);
         expect(allDishesMatch).to.equal(true);
