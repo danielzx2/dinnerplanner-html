@@ -35,11 +35,14 @@ class DinnerModel {
 
   //Returns the total price of the menu (price per serving of each dish multiplied by number of guests).
   getTotalMenuPrice() {
-    return this.menu.map(menu => menu.pricePerServing).reduce((a,b) => a+b) * this.getNumberOfGuests();
+    return this.menu.reduce((a,b) => a+b.pricePerServing, " ") * this.getNumberOfGuests();
   }
 
   //Adds the passed dish to the menu.
   addDishToMenu(dish) {
+    if(this.menu.includes(dish)) {
+      this.removeDishFromMenu(dish.id);
+    }
     this.menu.push(dish);
   }
 
@@ -61,6 +64,7 @@ class DinnerModel {
     return fetch((ENDPOINT.concat("/recipes/search?type=")
     .concat(type).concat("&query=").concat(query)),
       {headers:{"X-Mashape-Key" : API_KEY }})
+      .then(catchErrors)
       .then(response => response.json())
       .then(response => {
         document.getElementById("loader").style.display = "none";
@@ -72,12 +76,12 @@ class DinnerModel {
   }
 
   //Returns a dish of specific ID
-  //assign 3
   getDish(id) {
     document.getElementById("loader").style.display = "";
     return fetch(ENDPOINT+"/recipes/"+id+"/information",
-      {headers:{"X-Mashape-Key" : API_KEY }}
-      ).then(response => {
+      {headers:{"X-Mashape-Key" : API_KEY }})
+      .then(catchErrors)
+      .then(response => {
         document.getElementById("loader").style.display = "none";
         return response.json()
       })
@@ -86,4 +90,13 @@ class DinnerModel {
       console.log(error)
     });
   }
+}
+
+//the error handler
+function catchErrors(resp) {
+  if(resp.status === 200) {
+    return resp;
+  }
+  else
+    return resp;
 }
