@@ -40,7 +40,8 @@ class DinnerModel {
 
   //Adds the passed dish to the menu.
   addDishToMenu(dish) {
-    if(this.menu.includes(dish)) {
+    if(this.menu.includes(dish))
+    {
       this.removeDishFromMenu(dish.id);
     }
     this.menu.push(dish);
